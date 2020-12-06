@@ -17,16 +17,15 @@ int getRandomNumer() {
 * Funktion för att kontrollera vilken färg som det vinnade numret tillhör och därmed returnerar den vinnande färgen.
 * Funktionen antar att black är den vinnande färgen och kontrollerar istället ifall numret finns i arrayn för den röda färgen. Finns numret sätts istället röd som vinnade färg.
 */
-string whatColorWon(int blackNumbers[18], int redNumbers[18], int winningNumber, string chosenColor) {
+string whatColorWon(int blackNumbers[18], int redNumbers[18], int winningNumber) {
 	string winningColor = "black";
 
-	if (chosenColor == "red") {
-		for (int i = 0; i < 18; i++) {
-			if (winningNumber == redNumbers[i]) {
-				winningColor = "red";
-			}
+	for (int i = 0; i < 18; i++) {
+		if (winningNumber == redNumbers[i]) {
+		winningColor = "red";
 		}
 	}
+	
 	
 	return winningColor;
 }
@@ -77,7 +76,7 @@ int game(int balance) {
 	if (gameMode == "color") {
 		cout << "What color do you wanna bet on? (red/black) \n";
 		cin >> chosenColor;
-		winningColor = whatColorWon(blackNumbers, redNumbers, winningNumber, chosenColor);
+		winningColor = whatColorWon(blackNumbers, redNumbers, winningNumber);
 		cout << "Winning color was: ";
 		cout << winningColor << "\n";
 		
