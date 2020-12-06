@@ -17,7 +17,7 @@ int getRandomNumer() {
 * Funktion för att kontrollera vilken färg som det vinnade numret tillhör och därmed returnerar den vinnande färgen.
 * Funktionen antar att black är den vinnande färgen och kontrollerar istället ifall numret finns i arrayn för den röda färgen. Finns numret sätts istället röd som vinnade färg.
 */
-string whatColorWon(int blackNumbers[18], int redNumbers[18], int winningNumber) {
+string whatColorWon(int redNumbers[18], int winningNumber) {
 	string winningColor = "black";
 
 	for (int i = 0; i < 18; i++) {
@@ -57,9 +57,9 @@ int game(int balance) {
 	cout << "Bet on number or color? (number/color) \n";
 	cin >> gameMode;
 	// Steg 2.
-	cout << "How much you want to bet? (100, 200, 500) \n";
+	cout << "How much you want to bet? (100, 300, 500) \n";
 	cin >> attemptedBet;
-	if (attemptedBet <= balance && attemptedBet == 100 || attemptedBet == 200 || attemptedBet == 500) {
+	if (attemptedBet <= balance && attemptedBet == 100 || attemptedBet == 300 || attemptedBet == 500) {
 		bet = attemptedBet;
 		attemptedBet = 0;
 		balance -= bet;
@@ -76,7 +76,7 @@ int game(int balance) {
 	if (gameMode == "color") {
 		cout << "What color do you wanna bet on? (red/black) \n";
 		cin >> chosenColor;
-		winningColor = whatColorWon(blackNumbers, redNumbers, winningNumber);
+		winningColor = whatColorWon(redNumbers, winningNumber);
 		cout << "Winning color was: ";
 		cout << winningColor << "\n";
 		
@@ -88,7 +88,6 @@ int game(int balance) {
 			cout << "Sorry, you lost. Try again. \n";
 		}
 	}
-
 	//Steg 4.2.
 	else if (gameMode == "number") {
 		cout << "What number do you wanna bet on? (1-36) \n";
@@ -107,10 +106,8 @@ int game(int balance) {
 		cout << "Technical error, try again. huehuehue \n";
 		balance += bet;
 	}
-
 	return balance;
 }
-
 int main() {
 	int balance = 1000;
 	string stop;
@@ -138,8 +135,6 @@ int main() {
 			}
 		}
 	}
-
-
 	return 0;
 }
 
